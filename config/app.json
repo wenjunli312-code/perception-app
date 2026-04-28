@@ -1,0 +1,16 @@
+{
+  "app": {
+    "name": "perception-app",
+    "version": "1.0.0"
+  },
+  "vehicle_bridge": {
+    "host": "127.0.0.1",
+    "port": 9090,
+    "timeout_ms": 500
+  },
+  "detection": {
+    "confidence_threshold": 0.6,
+    "nms_threshold": 0.45,
+    "max_detections": 100
+  }
+}

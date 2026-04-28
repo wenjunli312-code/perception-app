@@ -1,0 +1,7 @@
+lidar:
+  id: top_lidar
+  model: VLP-16
+  rpm: 600
+  range_meters: 100.0
+  channels: 16
+  points_per_second: 300000

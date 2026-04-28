@@ -1,0 +1,8 @@
+camera:
+  id: front_camera
+  resolution:
+    width: 1920
+    height: 1080
+  fps: 30
+  fov_degrees: 90
+  encoding: rgb8
