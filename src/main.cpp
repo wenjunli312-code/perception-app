@@ -1,27 +1,26 @@
 #include <iostream>
-#include <perception_core/camera.h>
-#include <perception_core/lidar.h>
 #include <perception_core/detector.h>
-#include <vehicle_bridge/controller.h>
+#include <perception_core/lane_detector.h>
+#include <perception_core/point_pillars.h>
+#include <perception_core/object_fusion.h>
+#include <vehicle_bridge/vehicle_controller.h>
+#include <vehicle_bridge/vehicle_state.h>
 
 int main() {
-    std::cout << "perception-app running" << std::endl;
+    std::cout << "=== perception-app demo ===" << std::endl;
 
-    // Initialize sensors
-    perception_core::Camera camera("config/camera.yaml");
-    perception_core::Lidar lidar("config/lidar.yaml");
+    // Initialize perception modules
+    perception_core::YoloDetector detector;
+    perception_core::LaneDetector lane_detector;
+    perception_core::PointPillarsDetector point_pillars;
+    perception_core::ObjectFusion fusion;
 
-    // Run detection
-    perception_core::Detector detector;
-    detector.addSensor(&camera);
-    detector.addSensor(&lidar);
-    auto detections = detector.run();
+    std::cout << "All perception modules initialised." << std::endl;
 
-    std::cout << "Detected " << detections.size() << " objects" << std::endl;
+    // Initialise vehicle controller
+    vehicle_bridge::VehicleController controller;
+    controller.send_command(0.0f, 0.0f, 0.0f);
 
-    // Send to vehicle controller
-    vehicle_bridge::Controller controller("config/app.json");
-    controller.send(detections);
-
+    std::cout << "=== demo complete ===" << std::endl;
     return 0;
 }
